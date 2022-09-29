@@ -1,1 +1,1 @@
-# vous_etes_le_heros_du_labyrinthe_mystere
+<span style="font-family:maze.ttf; font-size:4em;"># labyrinthe_mystere</span>
