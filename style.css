@@ -1,9 +1,9 @@
 @font-face {
-  src: url("/police/Maze.ttf") format("truetype");
+  src: url("assets/police/Maze.ttf") format("truetype");
   font-family: "maze";
 }
 @font-face {
-  src: url("/police/BebasNeue-Regular.otf") format("opentype");
+  src: url("assets/police/BebasNeue-Regular.otf") format("opentype");
   font-family: "cool";
 }
 @font-face {
@@ -36,8 +36,7 @@ body {
   font-size: 50px;
   color: white;
 }
-.logo {
-}
+
 img {
   width: 450px;
 }

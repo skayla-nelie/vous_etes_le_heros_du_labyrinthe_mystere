@@ -25,8 +25,8 @@ let chaptersObj = {
       },
     ],
   },
-  
-porte1: {
+
+  porte1: {
     subtitle: "La porte 1",
     text: "Vous croisez un minautore (évidemment) et il vous tue, vous recommencer depuis le début. ",
     img: "assets/img/",
@@ -62,7 +62,6 @@ porte1: {
         text: "début",
         action: "goToChapter(`chapter1`)",
       },
-    
     ],
   },
 
@@ -86,7 +85,7 @@ porte1: {
     ],
   },
 
-past: {
+  past: {
     subtitle: "La porte du passé",
     text: "la porte vous renvoie dans le passé, plus précisemment au moment ou vous avez commencer la quête. ",
     img: "assets/img/",
@@ -95,7 +94,6 @@ past: {
         text: "dévut",
         action: "goToChapter(`chapter1`)",
       },
-     
     ],
   },
   present: {
@@ -107,7 +105,6 @@ past: {
         text: "début",
         action: "goToChapter(`chapter1`)",
       },
-  
     ],
   },
   keys: {
@@ -123,7 +120,6 @@ past: {
         text: "non",
         action: "goToChapter(`debut`)",
       },
-
     ],
   },
   debut: {
@@ -135,7 +131,6 @@ past: {
         text: "début",
         action: "goToChapter(`chapter1)",
       },
-  
     ],
   },
   final_door: {
@@ -151,16 +146,13 @@ past: {
         text: "mort",
         action: "goToChapter(`mort`)",
       },
-   
     ],
   },
-mort: {
+  mort: {
     subtitle: "La porte de la mort",
     text: "En choissisant la porte de la mort vous mourrez dans le jeu mais revenez dans votre monde. ",
     img: "assets/img/",
-    options: [
-   
-    ],
+    options: [],
   },
   vie: {
     subtitle: "La porte de la vie",
@@ -171,9 +163,14 @@ mort: {
         text: "début",
         action: "goToChapter(`chapter1)",
       },
-     
     ],
   },
-
-function goToChapter(chapterName) {,
-    const chapter = chaptersObj[chapterName];}
+};
+function goToChapter(chapterName) {
+  console.log(chaptersObj[chapter1].subtitle);
+  console.log(chaptersObj[chapter1].text);
+  console.log(chaptersobj[chapterName].subtitle);
+  console.log(chaptersobj[chapterName].text);
+  console.log(chaptersobj[chapterName].options(2).text);
+}
+goToChapter(chapter1);
