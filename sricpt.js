@@ -1,3 +1,16 @@
+let keysFounded = false;
+function keys() {
+  keyFounded = true;
+  goToChapter("final_door");
+}
+function again() {
+  if (keys > 4) {
+    goToChapter("mort");
+  } else {
+    goToChapter("chapter1");
+  }
+}
+
 let chaptersObj = {
   chapter1: {
     subtitle: "Début du labyrhinthe",
@@ -167,10 +180,31 @@ let chaptersObj = {
   },
 };
 function goToChapter(chapterName) {
-  console.log(chaptersObj[chapter1].subtitle);
-  console.log(chaptersObj[chapter1].text);
-  console.log(chaptersobj[chapterName].subtitle);
-  console.log(chaptersobj[chapterName].text);
-  console.log(chaptersobj[chapterName].options(2).text);
+  let chapitre = document.querySelector(".title");
+  let img = document.querySelector(".img");
+  let texte = document.querySelector(".text");
+  chapitre.innerText = chaptersObj[chapterName].subtitle;
+  texte.innerText = chaptersObj[chapterName].text;
+  img.innerHTML = `<img src="${chaptersObj[chapterName].img}" alt= "chapter_img" />`;
+  for (
+    let index = 0;
+    index < chaptersObj[chapterName].options.length;
+    index++
+  ) {
+    let txtButton = "";
+    let decision = chaptersObj[chapterName].options[index].action;
+    txtButton += `<div class="button"><button type="button" onclick="${chaptersObj[chapterName].options[index].action}">${chaptersObj[chapterName].options[index].text}</button></div>`;
+  }
+  decision.innerHTML = txtButton;
 }
+
 goToChapter(chapter1);
+
+let keyFounded = false;
+function again() {
+  if (keys > 4) {
+    goToChapter("mort");
+  } else {
+    goToChapter("chapter1");
+  }
+}
