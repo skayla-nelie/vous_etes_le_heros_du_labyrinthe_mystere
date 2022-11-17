@@ -1,3 +1,14 @@
+let key = 0;
+if (localStorage.getItem("key") != null) {
+  key = localStorage.getItem("key");
+}
+
+function debut() {
+  key++;
+  localStorage.setItem("key", key);
+  goToChapter("chapter1");
+}
+
 let keysFounded = false;
 function keys() {
   keyFounded = true;
@@ -14,8 +25,8 @@ function again() {
 let chaptersObj = {
   chapter1: {
     subtitle: "Début du labyrhinthe",
-    text: "Vous vours rééveiller un matin et décidez de jouer au nouveau jeu vidéo que vous a acheteé votre grand-mère dans une vieille boutique en l'honneur de votre anniversaire. Aussitôt vous être connectez au jeu votre corps se fait aspirer par la télévison et vous attérrisez devant un labyrhinthe",
-    img: "assets/img/debut_lab.jpeg",
+    text: "Vous vours réveiller un matin et décidez de jouer au nouveau jeu vidéo que vous a acheteé votre grand-mère dans une vieille boutique en l'honneur de votre anniversaire. Aussitôt vous être connectez au jeu votre corps se fait aspirer par la télévison et vous attérrisez devant un labyrhinthe",
+    img: "assets/img/tv.gif",
     options: [
       {
         text: "Vous rouler à toutes vitesse dans les rues de New york, losrque...",
@@ -26,7 +37,7 @@ let chaptersObj = {
   deux_portes: {
     subtitle: "Les deux premières portes",
     text: "Deux portes se présentent à vous.",
-    img: "assets/img/",
+    img: "assets/img/two_door.jpeg",
     options: [
       {
         text: "porte 1",
@@ -42,7 +53,7 @@ let chaptersObj = {
   porte1: {
     subtitle: "La porte 1",
     text: "Vous croisez un minautore (évidemment) et il vous tue, vous recommencer depuis le début. ",
-    img: "assets/img/",
+    img: "assets/img/minautore.jpeg",
     options: [
       {
         text: "début",
@@ -53,8 +64,8 @@ let chaptersObj = {
 
   sphinx: {
     subtitle: "L'énigme du Sphinx",
-    text: "Après avoir travaersé la porte 2 vous tomber nez à nez avec un sphinx qui vous présente un énigme. Devant toi se trouve 2 autres porte, dans la première il y a un lion affamé depuis 6 mois et dans la deuxième se trouve un assasin sans pitié. quel porte devrais tu choisir afin de survivre. ",
-    img: "assets/img/",
+    text: "Après avoir traversé la porte 2 vous tomber nez à nez avec un sphinx qui vous présente un énigme. Devant toi se trouve 2 autres porte, dans la première il y a un lion affamé depuis 6 mois et dans la deuxième se trouve un assasin sans pitié. quel porte devrais tu choisir afin de survivre. ",
+    img: "assets/img/sphinx.jpeg",
     options: [
       {
         text: "assasins",
@@ -69,7 +80,7 @@ let chaptersObj = {
   start_over: {
     subtitle: "Retour au début",
     text: "Malheuresement vous avez mal répondu à l'énigme vous recommencer depuis le début. ",
-    img: "assets/img/",
+    img: "assets/img/reset.jpeg",
     options: [
       {
         text: "début",
@@ -81,7 +92,7 @@ let chaptersObj = {
   trois_portes: {
     subtitle: "Trois autres portes",
     text: "Bravo! bonne réponse. Cette fois-ci se trouve 3 porte devant vous, laquelle allez-vous choisir. ",
-    img: "assets/img/",
+    img: "assets/img/three_door",
     options: [
       {
         text: "passé",
@@ -101,7 +112,7 @@ let chaptersObj = {
   past: {
     subtitle: "La porte du passé",
     text: "la porte vous renvoie dans le passé, plus précisemment au moment ou vous avez commencer la quête. ",
-    img: "assets/img/",
+    img: "assets/img/past.png",
     options: [
       {
         text: "dévut",
@@ -112,7 +123,18 @@ let chaptersObj = {
   present: {
     subtitle: "La porte du présent",
     text: "En ouvrant la porte , vous apercevez des clé que vous ranger dans votre poche, mais vous etes quand même renvoyé au début. ",
-    img: "assets/img/",
+    img: "assets/img/again.jpeg",
+    options: [
+      {
+        text: "début",
+        action: "goToChapter(`chapter1`)",
+      },
+    ],
+  },
+  future: {
+    subtitle: "La porte du future",
+    text: "En ouvrant la porte , vous arrivé devant une porte avec une serrure. ",
+    img: "assets/img/serrure",
     options: [
       {
         text: "début",
@@ -123,7 +145,7 @@ let chaptersObj = {
   keys: {
     subtitle: "Les clés",
     text: "Avez-vous les clés. ",
-    img: "assets/img/",
+    img: "assets/img/keyss",
     options: [
       {
         text: "oui",
@@ -138,7 +160,7 @@ let chaptersObj = {
   debut: {
     subtitle: "quelque chose manque",
     text: "Sans clés vous ne pouvez pas avancé, vous allez devoir recommencez. ",
-    img: "assets/img/",
+    img: "assets/img/reset.jpeg",
     options: [
       {
         text: "début",
@@ -149,7 +171,7 @@ let chaptersObj = {
   final_door: {
     subtitle: "Dernière portes. ",
     text: "Les deux portes finale se présentent a vous: la vie et la mort. ",
-    img: "assets/img/",
+    img: "assets/img/ld.jpeg",
     options: [
       {
         text: "vie",
@@ -164,13 +186,13 @@ let chaptersObj = {
   mort: {
     subtitle: "La porte de la mort",
     text: "En choissisant la porte de la mort vous mourrez dans le jeu mais revenez dans votre monde. ",
-    img: "assets/img/",
+    img: "assets/img/home.gif",
     options: [],
   },
   vie: {
     subtitle: "La porte de la vie",
     text: "En choissisant la porte de la vie le jeu décide de vous redonnez une vie afin que vous puissiez recommencer le labyrhinte. qu'est-ce que c'est chouette!. ",
-    img: "assets/img/",
+    img: "assets/img/reset.png",
     options: [
       {
         text: "début",
@@ -208,3 +230,18 @@ function again() {
     goToChapter("chapter1");
   }
 }
+
+if (chapter.video != undefined) {
+  img.innerHTML = `<video src="${chapter.video}" loop muted autoplay>`;
+} else {
+  img.innerHTML = `<img src="${chapter.img}" alt= "chapter_img" />`;
+}
+const audio = new Audio("assets/hb.mp3");
+audio.currentTime = 0;
+audio.play();
+
+let currentchapter = "chapter1";
+if (localStorage.getItem("chapter") != null) {
+  currentchapter = localStorage.getItem("chapter");
+}
+goToChapter(currentchapter);
