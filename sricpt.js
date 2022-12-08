@@ -9,13 +9,8 @@ function debut() {
   goToChapter("chapter1");
 }
 
-let keysFounded = false;
-function keys() {
-  keyFounded = true;
-  goToChapter("final_door");
-}
 function again() {
-  if (keys > 4) {
+  if (key > 4) {
     goToChapter("mort");
   } else {
     goToChapter("chapter1");
@@ -25,12 +20,12 @@ function again() {
 let chaptersObj = {
   chapter1: {
     subtitle: "Début du labyrhinthe",
-    text: "Vous vours réveiller un matin et décidez de jouer au nouveau jeu vidéo que vous a acheteé votre grand-mère dans une vieille boutique en l'honneur de votre anniversaire. Aussitôt vous être connectez au jeu votre corps se fait aspirer par la télévison et vous attérrisez devant un labyrhinthe",
+    text: "Vous vous réveiller un matin et décidez de jouer au nouveau jeu vidéo que vous a acheteé votre grand-mère dans une vieille boutique en l'honneur de votre anniversaire. Aussitôt vous être connectez au jeu votre corps se fait aspirer par la télévison et vous attérrisez devant un labyrhinthe",
     img: "assets/img/tv.gif",
     options: [
       {
-        text: "Vous rouler à toutes vitesse dans les rues de New york, losrque...",
-        action: "goToChapter(`sbires`)",
+        text: "continuer",
+        action: "goToChapter(`deux_portes`)",
       },
     ],
   },
@@ -57,7 +52,7 @@ let chaptersObj = {
     options: [
       {
         text: "début",
-        action: "goToChapter(`chapter1`)",
+        action: "again()",
       },
     ],
   },
@@ -84,7 +79,7 @@ let chaptersObj = {
     options: [
       {
         text: "début",
-        action: "goToChapter(`chapter1`)",
+        action: "again()",
       },
     ],
   },
@@ -116,7 +111,7 @@ let chaptersObj = {
     options: [
       {
         text: "dévut",
-        action: "goToChapter(`chapter1`)",
+        action: "again()",
       },
     ],
   },
@@ -127,7 +122,7 @@ let chaptersObj = {
     options: [
       {
         text: "début",
-        action: "goToChapter(`chapter1`)",
+        action: "again()",
       },
     ],
   },
@@ -138,7 +133,7 @@ let chaptersObj = {
     options: [
       {
         text: "début",
-        action: "goToChapter(`chapter1`)",
+        action: "again()",
       },
     ],
   },
@@ -153,7 +148,7 @@ let chaptersObj = {
       },
       {
         text: "non",
-        action: "goToChapter(`debut`)",
+        action: "again()",
       },
     ],
   },
@@ -164,7 +159,7 @@ let chaptersObj = {
     options: [
       {
         text: "début",
-        action: "goToChapter(`chapter1)",
+        action: "again()",
       },
     ],
   },
@@ -187,7 +182,12 @@ let chaptersObj = {
     subtitle: "La porte de la mort",
     text: "En choissisant la porte de la mort vous mourrez dans le jeu mais revenez dans votre monde. ",
     img: "assets/img/home.gif",
-    options: [],
+    options: [
+      {
+        text: "Recommencer",
+        action: "again()",
+      },
+    ],
   },
   vie: {
     subtitle: "La porte de la vie",
@@ -196,52 +196,57 @@ let chaptersObj = {
     options: [
       {
         text: "début",
-        action: "goToChapter(`chapter1)",
+        action: "again()",
       },
     ],
   },
 };
-function goToChapter(chapterName) {
-  let chapitre = document.querySelector(".title");
-  let img = document.querySelector(".img");
-  let texte = document.querySelector(".text");
-  chapitre.innerText = chaptersObj[chapterName].subtitle;
-  texte.innerText = chaptersObj[chapterName].text;
-  img.innerHTML = `<img src="${chaptersObj[chapterName].img}" alt= "chapter_img" />`;
-  for (
-    let index = 0;
-    index < chaptersObj[chapterName].options.length;
-    index++
-  ) {
-    let txtButton = "";
-    let decision = chaptersObj[chapterName].options[index].action;
-    txtButton += `<div class="button"><button type="button" onclick="${chaptersObj[chapterName].options[index].action}">${chaptersObj[chapterName].options[index].text}</button></div>`;
-  }
-  decision.innerHTML = txtButton;
-}
 
-goToChapter(chapter1);
-
-let keyFounded = false;
-function again() {
-  if (keys > 4) {
-    goToChapter("mort");
-  } else {
-    goToChapter("chapter1");
-  }
-}
-
-if (chapter.video != undefined) {
-  img.innerHTML = `<video src="${chapter.video}" loop muted autoplay>`;
-} else {
-  img.innerHTML = `<img src="${chapter.img}" alt= "chapter_img" />`;
-}
 const audio = new Audio("assets/hb.mp3");
-audio.currentTime = 0;
-audio.play();
+
+function goToChapter(chapterName) {
+  const chapter = chaptersObj[chapterName];
+  localStorage.setItem("chapter", chapterName);
+
+  let chapitre = document.querySelector(".titre");
+  let img = document.querySelector(".img");
+  let texte = document.querySelector(".texte");
+  let button = document.querySelector(".button");
+
+  chapitre.innerText = chapter.subtitle;
+  texte.innerText = chapter.text;
+
+  if (chapter.video != undefined) {
+    img.innerHTML = `<video src="${chapter.video}" loop muted autoplay>`;
+  } else {
+    img.innerHTML = `<img src="${chapter.img}" alt= "chapter_img" />`;
+  }
+
+  let txtButton = "";
+  for (let index = 0; index < chapter.options.length; index++) {
+    const option = chapter.options[index];
+    txtButton += `<button class="btn" onclick="${option.action}">${option.text}</button>`;
+  }
+  button.innerHTML = txtButton;
+
+  audio.currentTime = 0;
+  audio.play();
+}
 
 let currentchapter = "chapter1";
 if (localStorage.getItem("chapter") != null) {
   currentchapter = localStorage.getItem("chapter");
 }
 goToChapter(currentchapter);
+
+let crochet = document.querySelector(".crochet");
+audio = true;
+if (check.checked === true) {
+  audio = true;
+} else {
+  audio = false;
+}
+if (audio === true) {
+  audio.currentTime = 0;
+  audio.play();
+}
